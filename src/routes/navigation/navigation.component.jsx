@@ -6,7 +6,7 @@ import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component
 
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/user.context';
-import { CartContext } from '../../contexts/card.context';
+import { CartContext } from '../../contexts/cart.context';
 
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 
