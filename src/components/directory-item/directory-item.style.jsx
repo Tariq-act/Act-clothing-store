@@ -19,6 +19,7 @@ export const Body = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
+  border-radius: 5px;
 
   h2 {
     font-weight: bold;
@@ -44,6 +45,7 @@ export const DirectoryItemContainer = styled.div`
   border: 1px solid black;
   margin: 0 7.5px 15px;
   overflow: hidden;
+  border-radius: 5px;
 
   &:hover {
     cursor: pointer;

@@ -7,10 +7,13 @@ export const ProductCardContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: #fff;
 
   img {
     width: 100%;
-    height: 95%;
+    height: 90%;
     object-fit: cover;
     margin-bottom: 5px;
   }
@@ -41,6 +44,7 @@ export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+  padding: 0 10px;
 `;
 export const Name = styled.span`
   width: 90%;

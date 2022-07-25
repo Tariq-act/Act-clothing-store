@@ -9,6 +9,7 @@ export const BaseButton = styled.button`
   padding: 0 35px 0 35px;
   font-size: 15px;
   background-color: black;
+  border-radius: 5px;
   color: white;
   text-transform: uppercase;
   font-family: 'Open Sans';
