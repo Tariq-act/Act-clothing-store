@@ -35,5 +35,6 @@ export const userReducer = (state = INITIAL_STATE, action: AnyAction) => {
     };
   }
 
+  return state
 
 };
