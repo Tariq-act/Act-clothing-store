@@ -35,7 +35,6 @@ export function* getSnapshotFromUserAuth(userAuth: User, additionDetails?: Addit
     if (userSnapshot) {
       yield* put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }))
     }
-
   } catch (error) {
     yield* put(signInFailed(error as Error));
   }
@@ -105,7 +104,7 @@ export function* signOut() {
   }
 }
 
-export function* signInAfterSignUp({ payload: { user, additionDetails }, }: SignUpSuccess) {
+export function* signInAfterSignUp({ payload: { user, additionDetails } }: SignUpSuccess) {
   yield* call(getSnapshotFromUserAuth, user, additionDetails);
 }
 
