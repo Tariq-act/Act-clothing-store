@@ -1,5 +1,4 @@
 import { takeLatest, put, call, all } from 'typed-redux-saga/macro';
-import { User } from 'firebase/auth'
 
 import { USER_ACTION_TYPES } from './user.types';
 
@@ -11,8 +10,6 @@ import {
   signOutSuccess,
   signOutFailed,
   EmailSignInStart,
-  SignUpStart,
-  SignUpSuccess
 } from './user.action';
 
 import {
@@ -22,10 +19,9 @@ import {
   signAuthUserWithEmailAndPassword,
   createAuthUserWithEmailAndPassword,
   signOutUser,
-  AdditionalInformation
 } from '../../utils/firebase/firebase.utils';
 
-export function* getSnapshotFromUserAuth(userAuth: User, additionDetails?: AdditionalInformation) {
+export function* getSnapshotFromUserAuth(userAuth, additionDetails) {
   try {
     const userSnapshot = yield* call(
       createUserDocumentFromAuth,
@@ -33,10 +29,12 @@ export function* getSnapshotFromUserAuth(userAuth: User, additionDetails?: Addit
       additionDetails
     );
     if (userSnapshot) {
-      yield* put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }))
+      yield* put(
+        signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() })
+      );
     }
   } catch (error) {
-    yield* put(signInFailed(error as Error));
+    yield* put(signInFailed(error));
   }
 }
 
@@ -45,11 +43,11 @@ export function* signInWithGoogle() {
     const { user } = yield* call(signInWithGooglePopup);
     yield* call(getSnapshotFromUserAuth, user);
   } catch (error) {
-    yield* put(signInFailed(error as Error));
+    yield* put(signInFailed(error));
   }
 }
 
-export function* signInWithEmail({ payload: { email, password } }: EmailSignInStart) {
+export function* signInWithEmail({ payload: { email, password } }) {
   try {
     const userCredential = yield* call(
       signAuthUserWithEmailAndPassword,
@@ -61,9 +59,8 @@ export function* signInWithEmail({ payload: { email, password } }: EmailSignInSt
       const { user } = userCredential;
       yield* call(getSnapshotFromUserAuth, user);
     }
-
   } catch (error) {
-    yield* put(signInFailed(error as Error));
+    yield* put(signInFailed(error));
   }
 }
 
@@ -73,11 +70,11 @@ export function* isUserAuthenticated() {
     if (!userAuth) return;
     yield* call(getSnapshotFromUserAuth, userAuth);
   } catch (error) {
-    yield* put(signInFailed(error as Error));
+    yield* put(signInFailed(error));
   }
 }
 
-export function* signUp({ payload: { email, password, displayName } }: SignUpStart) {
+export function* signUp({ payload: { email, password, displayName } }) {
   try {
     const userCredential = yield* call(
       createAuthUserWithEmailAndPassword,
@@ -86,12 +83,11 @@ export function* signUp({ payload: { email, password, displayName } }: SignUpSta
     );
 
     if (userCredential) {
-      const { user } = userCredential
+      const { user } = userCredential;
       yield* put(signUpSuccess(user, { displayName }));
     }
-
   } catch (error) {
-    yield* put(signUpFailed(error as Error));
+    yield* put(signUpFailed(error));
   }
 }
 
@@ -100,11 +96,11 @@ export function* signOut() {
     yield* call(signOutUser);
     yield* put(signOutSuccess());
   } catch (error) {
-    yield* put(signOutFailed(error as Error));
+    yield* put(signOutFailed(error));
   }
 }
 
-export function* signInAfterSignUp({ payload: { user, additionDetails } }: SignUpSuccess) {
+export function* signInAfterSignUp({ payload: { user, additionDetails } }) {
   yield* call(getSnapshotFromUserAuth, user, additionDetails);
 }
 
