@@ -7,6 +7,7 @@ import { Elements } from '@stripe/react-stripe-js';
 
 import App from './App';
 import { store, persistor } from './store/store';
+// import * as serviceWorker from './se'
 import { stripePromise } from './utils/stripe/stripe.utils';
 
 import './index.scss';
