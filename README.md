@@ -12,6 +12,8 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
+![screenshot](https://github.com/Tariq-act/Act-clothing-store/blob/master/uploads/Screenshot_20221216_034129.png)
+
 
 ### Deployment
 
