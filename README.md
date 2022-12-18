@@ -22,10 +22,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Firebase for Database 
 
 ### Tech Stack
- -React
- -Redux
- -Firebase
- -Typescript
+ - React
+ - Redux
+ - Firebase
+ - Typescript
 
 ### Deployment
 
